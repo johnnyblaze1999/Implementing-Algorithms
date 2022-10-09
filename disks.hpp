@@ -158,7 +158,7 @@ sorted_disks sort_alternate(const disk_state& before) {
       }
     }
   }
-  return sorted_disks(state,numOfSwap);
+  return sorted_disks(disk_state(state),numOfSwap);
 }
 
 
@@ -183,5 +183,5 @@ sorted_disks sort_lawnmower(const disk_state& before) {
     }
 
 
-  return sorted_disks(state, numOfSwap);
+  return sorted_disks(disk_state(state), numOfSwap);
 }
