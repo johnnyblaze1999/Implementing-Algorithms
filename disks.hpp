@@ -113,8 +113,8 @@ public:
   // the left (low indices) and all dark disks on the right (high indices).
   bool is_sorted() const {
       
-      for(size_t i=0;i<light_count();i++){    //  Loop to check if the left half is all light disks
-        if(get(i)==DISK_DARK) return false;
+      for(size_t i = 0; i < light_count(); i++){    //  Loop to check if the left half is all light disks
+        if(get(i) == DISK_DARK) return false;
       }
       return true;
   }
@@ -149,10 +149,10 @@ public:
 sorted_disks sort_alternate(const disk_state& before) {
 	int numOfSwap = 0;                                                                      //record # of step swap
 
-  disk_state state=before;
-  for(size_t i=0;i<state.total_count();i++){                                              //  Alternate algorithm that check and swap the disk with the one after it
-    for(size_t j=0;j<state.total_count()-1;j++){
-      if(state.get(j)==DISK_DARK&&state.get(j+1)==DISK_LIGHT){
+  disk_state state = before;
+  for(size_t i = 0; i < state.total_count(); i++){                                              //  Alternate algorithm that check and swap the disk with the one after it
+    for(size_t j = 0; j < state.total_count() - 1; j++){
+      if(state.get(j) == DISK_DARK && state.get(j + 1) == DISK_LIGHT){
         state.swap(j);
         numOfSwap++;
       }
@@ -165,18 +165,18 @@ sorted_disks sort_alternate(const disk_state& before) {
 // Algorithm that sorts disks using the lawnmower algorithm.
 sorted_disks sort_lawnmower(const disk_state& before) {
   	
-    int numOfSwap=0;
-    disk_state state=before;
-    for(size_t i=0;i<(state.dark_count()/2);i++){
-      for(size_t j=0;j<(state.total_count()-1);j++){                                      //  Lawnmower algorithm first run from left to right and swap disks
-        if(state.get(j)==DISK_DARK&&state.get(j+1)==DISK_LIGHT){
+    int numOfSwap = 0;
+    disk_state state = before;
+    for(size_t i = 0; i < (state.dark_count() / 2); i++){
+      for(size_t j = 0; j < (state.total_count() - 1); j++){                                      //  Lawnmower algorithm first run from left to right and swap disks
+        if(state.get(j) == DISK_DARK && state.get(j + 1) == DISK_LIGHT){
           state.swap(j);
           numOfSwap++;
         }
       }
-      for(size_t j=(state.total_count()-1);j>0;j--){                                      // It run from right to left and swap
-        if(state.get(j)==DISK_LIGHT&&state.get(j-1)==DISK_DARK){
-          state.swap(j-1);
+      for(size_t j = (state.total_count() - 1);j > 0; j--){                                      // It run from right to left and swap
+        if(state.get(j) == DISK_LIGHT && state.get(j - 1) == DISK_DARK){
+          state.swap(j - 1);
           numOfSwap++;
         }
       }
