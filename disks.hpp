@@ -149,16 +149,16 @@ public:
 sorted_disks sort_alternate(const disk_state& before) {
 	int numOfSwap = 0;                                                                      //record # of step swap
 
-  disk_state after=before;
-  for(size_t i=0;i<after.total_count();i++){
-    for(size_t j=0;j<after.total_count()-1;j++){
-      if(after.get(j)==DISK_DARK&&after.get(j+1)==DISK_LIGHT){
-        after.swap(j);
+  disk_state state=before;
+  for(size_t i=0;i<state.total_count();i++){
+    for(size_t j=0;j<state.total_count()-1;j++){
+      if(state.get(j)==DISK_DARK&&state.get(j+1)==DISK_LIGHT){
+        state.swap(j);
         numOfSwap++;
       }
     }
   }
-  return sorted_disks(after,numOfSwap);
+  return sorted_disks(state,numOfSwap);
 }
 
 
@@ -166,22 +166,22 @@ sorted_disks sort_alternate(const disk_state& before) {
 sorted_disks sort_lawnmower(const disk_state& before) {
   	
     int numOfSwap=0;
-    disk_state after=before;
-    for(size_t i=0;i<(after.dark_count()/2);i++){
-      for(size_t j=0;j<(after.total_count()-1);j++){
-        if(after.get(j)==DISK_DARK&&after.get(j+1)==DISK_LIGHT){
-          after.swap(j);
+    disk_state state=before;
+    for(size_t i=0;i<(state.dark_count()/2);i++){
+      for(size_t j=0;j<(state.total_count()-1);j++){
+        if(state.get(j)==DISK_DARK&&state.get(j+1)==DISK_LIGHT){
+          state.swap(j);
           numOfSwap++;
         }
       }
-      for(size_t j=(after.total_count()-1);j>0;j--){
-        if(after.get(j)==DISK_LIGHT&&after.get(j-1)==DISK_DARK){
-          after.swap(j-1);
+      for(size_t j=(state.total_count()-1);j>0;j--){
+        if(state.get(j)==DISK_LIGHT&&state.get(j-1)==DISK_DARK){
+          state.swap(j-1);
           numOfSwap++;
         }
       }
     }
 
 
-  return sorted_disks(after, numOfSwap);
+  return sorted_disks(state, numOfSwap);
 }
